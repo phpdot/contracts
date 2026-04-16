@@ -23,7 +23,7 @@ interface SseHandlerInterface
      * false to fall through to normal HTTP dispatch.
      *
      * @param ServerRequestInterface $request The incoming request
-     * @param Closure(string): void $write Write SSE data to the stream
+     * @param Closure(string): bool $write Write SSE data to the stream (returns false on client disconnect)
      * @param Closure(): void $close Close the stream
      */
     public function handleSse(
