@@ -67,28 +67,40 @@ interface TracerInterface
     /**
      * Emit a debug-level log line correlated to the current span.
      *
+     * Returns a pending handle written when it is released (end of statement);
+     * call secure() on it to encrypt the line — $tracer->debug('...')->secure().
+     *
      * @param array<string, mixed> $context
      */
-    public function debug(string $message, array $context = []): void;
+    public function debug(string $message, array $context = []): PendingLogInterface;
 
     /**
      * Emit an info-level log line correlated to the current span.
      *
+     * Returns a pending handle written when it is released (end of statement);
+     * call secure() on it to encrypt the line — $tracer->info('...')->secure().
+     *
      * @param array<string, mixed> $context
      */
-    public function info(string $message, array $context = []): void;
+    public function info(string $message, array $context = []): PendingLogInterface;
 
     /**
      * Emit a warning-level log line correlated to the current span.
      *
+     * Returns a pending handle written when it is released (end of statement);
+     * call secure() on it to encrypt the line — $tracer->warning('...')->secure().
+     *
      * @param array<string, mixed> $context
      */
-    public function warning(string $message, array $context = []): void;
+    public function warning(string $message, array $context = []): PendingLogInterface;
 
     /**
      * Emit an error-level log line correlated to the current span.
      *
+     * Returns a pending handle written when it is released (end of statement);
+     * call secure() on it to encrypt the line — $tracer->error('...')->secure().
+     *
      * @param array<string, mixed> $context
      */
-    public function error(string $message, array $context = []): void;
+    public function error(string $message, array $context = []): PendingLogInterface;
 }

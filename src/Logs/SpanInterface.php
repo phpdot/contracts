@@ -47,30 +47,42 @@ interface SpanInterface
     /**
      * Emit a debug-level log line correlated to this span.
      *
+     * Returns a pending handle written when released; call secure() to encrypt
+     * the line — $span->debug('...')->secure().
+     *
      * @param array<string, mixed> $context
      */
-    public function debug(string $message, array $context = []): static;
+    public function debug(string $message, array $context = []): PendingLogInterface;
 
     /**
      * Emit an info-level log line correlated to this span.
      *
+     * Returns a pending handle written when released; call secure() to encrypt
+     * the line — $span->info('...')->secure().
+     *
      * @param array<string, mixed> $context
      */
-    public function info(string $message, array $context = []): static;
+    public function info(string $message, array $context = []): PendingLogInterface;
 
     /**
      * Emit a warning-level log line correlated to this span.
      *
+     * Returns a pending handle written when released; call secure() to encrypt
+     * the line — $span->warning('...')->secure().
+     *
      * @param array<string, mixed> $context
      */
-    public function warning(string $message, array $context = []): static;
+    public function warning(string $message, array $context = []): PendingLogInterface;
 
     /**
      * Emit an error-level log line correlated to this span.
      *
+     * Returns a pending handle written when released; call secure() to encrypt
+     * the line — $span->error('...')->secure().
+     *
      * @param array<string, mixed> $context
      */
-    public function error(string $message, array $context = []): static;
+    public function error(string $message, array $context = []): PendingLogInterface;
 
     /**
      * End the span: stamp its end time and export it to the sink. Idempotent.
