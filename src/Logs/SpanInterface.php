@@ -7,8 +7,9 @@ declare(strict_types=1);
  *
  * Callers write attributes, events, status, and correlated log lines onto the
  * span and then end it; only the trace identity is read back, via context().
- * The full span snapshot is read by writers, never through this interface. Every
- * mutator returns the same instance for fluent chaining. Implementations are
+ * The full span snapshot is read by writers, never through this interface. The
+ * attribute, event, and status mutators return the same instance for fluent
+ * chaining; the log methods return a pending log handle. Implementations are
  * mutable and bound to a single coroutine for their lifetime.
  *
  * @author Omar Hamdan <omar@phpdot.com>
