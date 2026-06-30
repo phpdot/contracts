@@ -42,7 +42,7 @@ interface ScopeManagerInterface
      * per-coroutine stack LIFO, including the root, then clear the per-coroutine slot.
      * Runs in the kernel's request finally to flush leaked frames before the coroutine
      * is reused. Idempotent. Export lives in SpanInterface::end(); this manager holds no
-     * sink reference of its own.
+     * writer reference of its own.
      */
     public function close(): void;
 }

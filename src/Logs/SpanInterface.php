@@ -7,7 +7,7 @@ declare(strict_types=1);
  *
  * Callers write attributes, events, status, and correlated log lines onto the
  * span and then end it; only the trace identity is read back, via context().
- * The full span snapshot is read by sinks, never through this interface. Every
+ * The full span snapshot is read by writers, never through this interface. Every
  * mutator returns the same instance for fluent chaining. Implementations are
  * mutable and bound to a single coroutine for their lifetime.
  *
@@ -85,7 +85,7 @@ interface SpanInterface
     public function error(string $message, array $context = []): PendingLogInterface;
 
     /**
-     * End the span: stamp its end time and export it to the sink. Idempotent.
+     * End the span: stamp its end time and export it to the writer. Idempotent.
      */
     public function end(): void;
 }
